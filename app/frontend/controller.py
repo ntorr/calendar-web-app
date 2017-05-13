@@ -7,4 +7,4 @@ frontend = Blueprint('frontend', __name__)
 @frontend.route('/')
 @frontend.route('/<path:path>')
 def index(path=None):
-    return render_template('app.html')
+    return render_template('index.html')
