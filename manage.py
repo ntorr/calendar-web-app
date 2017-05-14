@@ -35,13 +35,6 @@ def delete_user(user_name):
 @manager.option('--password', help='Temporary password')
 def add_user(user_name, first_name, last_name, email, password):
     user = Models.User(**locals())
-    """
-    first_name=first,
-    last_name=last,
-    user_name=user,
-    password=password,
-    email=email
-    """
     db.session.add(user)
     db.session.commit()
 
@@ -60,6 +53,20 @@ def initdb():
         password=u'123456',
         email=u"test@gmail.com")
     db.session.add(user)
+    db.session.commit()
+
+
+@manager.command
+def create_test_event():
+    db.create_all(bind=None)
+
+    event = Models.Event(
+        user_name='ntorr',
+        event_name='Test Event',
+        description='This is a test event',
+        show_as='Tentative'
+    )
+    db.session.add(event)
     db.session.commit()
 
 

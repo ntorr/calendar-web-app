@@ -20,7 +20,7 @@ $(document).ready(function(){
 
       login(loginData)
          .done(function(response){
-            showLoggedIn(response.data.user_name)
+            showLoggedIn(response.data.first_name)
             form.trigger('reset');
          }).fail(function(response){
             alert('Incorrect username or password');
@@ -28,7 +28,7 @@ $(document).ready(function(){
    });
 
    // setup logged in view
-   $('#logged-in-view button').click(function(){
+   $('#logged-in-view').click(function(){
       logout()
          .done(function(response){
             showLoggedOut()
@@ -59,11 +59,12 @@ $(document).ready(function(){
 function updateAuthStatus() {
    verifyAuth()
       .done(function(response){
-         showLoggedIn(response.data.user_name)
+         showLoggedIn(response.data.first_name)
       }).fail(function(response){
          showLoggedOut()
       });
 }
+
 function extractFormInput(form) {
    var inputs = form.serializeArray();
    var data = {};

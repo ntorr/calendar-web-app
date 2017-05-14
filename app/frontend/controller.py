@@ -4,7 +4,12 @@ from flask import (Flask, Blueprint, render_template, current_app, request,
 frontend = Blueprint('frontend', __name__)
 
 
+@frontend.route('/index.html')
 @frontend.route('/')
-@frontend.route('/<path:path>')
-def index(path=None):
+def index():
     return render_template('index.html')
+
+
+@frontend.route('/home.html')
+def home():
+    return render_template('home.html')

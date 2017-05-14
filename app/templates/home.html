@@ -1,0 +1,62 @@
+
+{% extends "layouts/header.html" %}
+{% set page_title = 'Team Calendar App' %}
+
+{% block meta %}
+<!-- put meta tags here !-->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+{% endblock %}
+
+{% block css_style %}
+<!-- Put css here !-->
+<link rel="stylesheet" href="/static/desktop/vendors/bootstrap-3.3.7-dist/css/bootstrap.css">
+{% endblock %}
+
+{% block main_body %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        Team Calendar App
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div id='create-event-view' class='well'>
+        <h3> Create an event </h3>
+        <form id='create-event-form'>
+            <div class="form-group">
+                <label>Event Name</label>
+                <input name='event_name' class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Start</label>
+                <input name='start_datetime' class="form-control">
+            </div>
+            <div class="form-group">
+                <label>End</label>
+                <input name='end_datetime' class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Show As</label>
+                <input name='show_as' class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input name='start_datetime' class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Event</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_btm %}
+<!-- Put javascript here !-->
+
+   <script src="/static/desktop/vendors/jquery.js"></script>
+   <script src="/static/desktop/js/home.js"></script>
+
+{% endblock %}

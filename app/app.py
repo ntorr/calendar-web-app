@@ -5,7 +5,7 @@ from sqlalchemy.exc import OperationalError
 from .config import DefaultConfig, get_config
 from .common import response
 from .common import constants as COMMON_CONSTANTS
-from .api import helloworld, auth
+from .api import helloworld, auth, events
 from .frontend import frontend
 from .models import User
 from .extensions import db, login_manager, csrf
@@ -17,6 +17,7 @@ DEFAULT_BLUEPRINTS = [
     helloworld,
     auth,
     frontend,
+    events,
 ]
 
 

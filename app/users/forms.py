@@ -8,7 +8,7 @@ from .constants import MIN_USERNAME_LEN, MAX_USERNAME_LEN, MIN_PASSWORD_LEN, MAX
 class LoginForm(FlaskForm):
     login = StringField('user_name', [validators.DataRequired()])
     password = StringField('password', [validators.DataRequired()])
-    remember_me = BooleanField('remember_me', default=False)
+    remember_me = BooleanField('remember_me', [validators.Optional()], default=False)
 
 
 class SignupForm(FlaskForm):
