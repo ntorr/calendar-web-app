@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
    // initial check to see if user is logged in or not
    updateAuthStatus();

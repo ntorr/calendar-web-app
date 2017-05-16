@@ -1,5 +1,5 @@
-## calendar-web-app
-A shared calendar/event catalogue written in Python
+## calendar-web-app (WIP)
+A shared calendar/event catalogue written in Python. Currently WIP.
 
 ### Licence
 
