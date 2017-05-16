@@ -5,6 +5,11 @@ frontend = Blueprint('frontend', __name__)
 
 
 @frontend.route('/')
-@frontend.route('/<path:path>')
-def index(path=None):
-    return render_template('app.html')
+@frontend.route('/index')
+def index():
+    return render_template('index.html')
+
+
+@frontend.route('/user/<path>/home')
+def user_home():
+    return render_template('home.html')

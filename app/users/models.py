@@ -9,7 +9,7 @@ from .constants import STRING_LEN, USER, PW_STRING_LEN, USER_ROLE
 
 
 class UserJsonSerializer(JsonSerializer):
-    __json_public__ = ['id', 'email', 'user_name']
+    __json_public__ = ['id', 'email', 'user_name', 'first_name']
     __json_modifiers__ = {
         'role_code': ['role', (lambda code: USER_ROLE[code])]
     }
