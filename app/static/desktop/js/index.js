@@ -50,9 +50,9 @@ function updateAuthStatus() {
       });
 }
 
-function showLoggedIn(user) {
+function showLoggedIn(response) {
    // show logged in view and show username
-   // $("#logged-in-view span").text(username);
+   $("#user-home span").text(response.data.first_name);
    $("#logged-out-view").addClass("hidden");
    $("#signup-view").addClass("hidden");
    $("#user-home").removeClass("hidden");

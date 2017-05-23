@@ -34,7 +34,6 @@ def login():
         if user:
             if authenticated:
                 login_user(user, remember=form.remember_me.data)
-                print(form.remember_me.data)
                 return response.make_data_resp(data=current_user.to_json(), msg="You have successfully logged in")
             else:
                 return response.make_error_resp(msg="Invalid username or password", type="Wrong Authentication",
