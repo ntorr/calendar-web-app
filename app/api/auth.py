@@ -4,6 +4,7 @@
 '''
 from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort, jsonify)
+from flask_babel import gettext as _
 
 from flask_login import login_required, login_user, current_user, logout_user, confirm_login, login_fresh
 from ..common import response
@@ -33,13 +34,13 @@ def login():
         if user:
             if authenticated:
                 login_user(user, remember=form.remember_me.data)
+                print(form.remember_me.data)
                 return response.make_data_resp(data=current_user.to_json(), msg="You have successfully logged in")
             else:
                 return response.make_error_resp(msg="Invalid username or password", type="Wrong Authentication",
                                                 code=422)
         else:
             return response.make_error_resp(msg="Username does not exist", type="Wrong Authentication", code=422)
-
     return response.make_form_error_resp(form=form)
 
 
@@ -48,8 +49,9 @@ def login():
 def logout():
     """ logout user """
     session.pop('login', None)
+    first_name = current_user.first_name
     logout_user()
-    return response.make_success_resp(msg="You have successfully logged out")
+    return response.make_success_resp(msg="Goodbye %s!" % first_name)
 
 
 @auth.route('/signup', methods=['POST'])
@@ -75,6 +77,7 @@ def signup():
             db.session.commit()
 
         except Exception as e:
+            # flash(_('Exception thrown when signing up user\nException: %s' % str(e)), 'error')
             return response.make_exception_resp(exception=e)
 
         # log the user in

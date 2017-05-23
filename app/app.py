@@ -9,6 +9,7 @@ from .api import helloworld, auth
 from .frontend import frontend
 from .models import User
 from .extensions import db, login_manager, csrf
+from flask_babel import Babel
 
 # For import *
 __all__ = ['create_app']
@@ -35,6 +36,8 @@ def create_app(config=None, app_name=None, blueprints=None):
     configure_extensions(app, config)
     configure_logging(app)
     configure_error_handlers(app)
+
+    babel = Babel(app)
 
     return app
 
