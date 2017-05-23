@@ -5,7 +5,7 @@ from flask_login import UserMixin
 from ..common.helpers import JsonSerializer, get_current_time
 from ..extensions import db
 
-from .constants import STRING_LEN, USER, PW_STRING_LEN, USER_ROLE
+from ..common.constants import STRING_LEN, USER, PW_STRING_LEN, USER_ROLE
 
 
 class UserJsonSerializer(JsonSerializer):

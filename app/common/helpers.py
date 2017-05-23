@@ -2,6 +2,8 @@ import os
 from datetime import datetime, timedelta
 from flask.json import JSONEncoder as BaseJSONEncoder
 
+FIFTEEN_MINUTES = 15 * 60
+
 
 def get_current_time():
     return datetime.utcnow()
@@ -9,6 +11,22 @@ def get_current_time():
 
 def get_current_time_plus(days=0, hours=0, minutes=0, seconds=0):
     return get_current_time() + timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
+
+
+def get_nearest_time(dt=None, round_to=FIFTEEN_MINUTES):
+    """Round a datetime object to any time laps in seconds
+    dt : datetime.datetime object, default now.
+    roundTo : Closest number of seconds to round to, default 1 minute.
+    Author: Thierry Husson 2012 - Use it as you want but don't blame me.
+    """
+    dt = datetime.now() if dt is None else dt
+    seconds = (dt.replace(tzinfo=None) - dt.min).seconds
+    rounding = (seconds + round_to / 2) // round_to * round_to
+    return dt + timedelta(0, rounding - seconds, -dt.microsecond)
+
+
+def get_nearest_time_plus(dt=None, round_to=FIFTEEN_MINUTES, days=0, hours=0, minutes=0, seconds=0):
+    return get_nearest_time(dt, round_to) + timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
 
 
 def make_dir(dir_path):

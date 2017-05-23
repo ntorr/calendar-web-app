@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import (BooleanField, StringField, HiddenField, PasswordField,
                      DateTimeField, validators, IntegerField, SubmitField)
 
-from .constants import MIN_USERNAME_LEN, MAX_USERNAME_LEN, MIN_PASSWORD_LEN, MAX_PASSWORD_LEN
+from ..common.constants import MIN_USERNAME_LEN, MAX_USERNAME_LEN, MIN_PASSWORD_LEN, MAX_PASSWORD_LEN
 
 
 class LoginForm(FlaskForm):

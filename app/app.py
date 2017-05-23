@@ -1,15 +1,14 @@
 import os
-from flask import Flask, request
+from flask import Flask
 
 from sqlalchemy.exc import OperationalError
 from .config import DefaultConfig, get_config
 from .common import response
 from .common import constants as COMMON_CONSTANTS
-from .api import helloworld, auth
+from .api import helloworld, auth, event
 from .frontend import frontend
 from .models import User
 from .extensions import db, login_manager, csrf
-from flask_babel import Babel
 
 # For import *
 __all__ = ['create_app']
@@ -18,6 +17,7 @@ DEFAULT_BLUEPRINTS = [
     helloworld,
     auth,
     frontend,
+    event,
 ]
 
 
@@ -37,8 +37,8 @@ def create_app(config=None, app_name=None, blueprints=None):
     configure_logging(app)
     configure_error_handlers(app)
 
-    babel = Babel(app)
-
+    with app.app_context():
+        db.create_all()
     return app
 
 

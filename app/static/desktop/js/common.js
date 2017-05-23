@@ -29,6 +29,12 @@ function signup(signupData) {
    return $.post(url, signupData);
 }
 
+// event helpers
+function createUserEvent(eventData) {
+    var url = '/api/event/create';
+    return $.post(url, eventData);
+}
+
 // form helpers
 function extractFormInput(form) {
    var inputs = form.serializeArray();

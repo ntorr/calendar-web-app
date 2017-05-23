@@ -39,6 +39,20 @@ $(document).ready(function(){
       });
    });
 
+   $("#create-event-view #create-event-form").submit(function(e){
+      e.preventDefault();
+      var form = $(this);
+      var eventData = extractFormInput(form);
+
+      createUserEvent(eventData)
+        .done(function(response){
+            // create a new view for a created event
+            alert("Event created!");
+        }).fail(function(response){
+            alert("Something went wrong");
+        });
+   });
+
 });
 
 function updateAuthStatus() {
