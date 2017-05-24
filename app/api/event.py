@@ -39,14 +39,12 @@ def delete_event(id):
 @login_required
 def create_event():
     form = NewEventForm()
-    print(form)
     if form.validate_on_submit():
         try:
             evt = UserEvent()
             form.populate_obj(evt)
 
             evt.user_name = current_user.user_name
-            print(evt)
 
             db.session.add(evt)
             db.session.commit()
@@ -56,4 +54,4 @@ def create_event():
 
         return response.make_success_resp(msg='Event created!')
 
-    return response.make_form_error_resp(form)
+    return response.make_form_error_resp(form, msg='Something went wrong. Please check your input.')

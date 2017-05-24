@@ -8,6 +8,18 @@ $.ajaxSetup({
     }
 });
 
+// alert helpers
+function errorMessage(response) {
+    // var msg = response.responseJSON.errors.message;
+    var type = response.responseJSON.errors.type;
+    return type.toString() + "!"; //\n" + msg.toString();
+}
+
+function welcomeMessage(response) {
+    var first_name = response.data.first_name.toString();
+    return "Welcome, " + first_name + "!";
+}
+
 // auth helpers
 function verifyAuth(callback) {
    var url = '/api/auth/verify_auth';

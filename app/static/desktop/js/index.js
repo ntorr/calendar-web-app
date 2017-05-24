@@ -8,9 +8,10 @@ $(document).ready(function(){
       var loginData = extractFormInput(form);
       login(loginData)
         .done(function(response){
+            alert(welcomeMessage(response));
             showLoggedIn(response);
         }).fail(function(response){
-            alert(response.data);
+            alert(errorMessage(response));
             showLoggedOut();
         });
    });
@@ -23,10 +24,10 @@ $(document).ready(function(){
 
       signup(signupData)
          .done(function(response){
-            alert("You just created a new user");
-            login(response);
+            alert(welcomeMessage(login(response)));
+            showLoggedIn(response);
          }).fail(function(response){
-            alert("Something went wrong");
+            alert(errorMessage(response));
          });
     });
 
@@ -35,7 +36,7 @@ $(document).ready(function(){
       .done(function(response){
         showLoggedOut();
       }).fail(function(response){
-        alert("Something went wrong");
+        alert(errorMessage(response));
       });
    });
 
@@ -49,10 +50,9 @@ $(document).ready(function(){
             // create a new view for a created event
             alert("Event created!");
         }).fail(function(response){
-            alert("Something went wrong");
+            alert(errorMessage(response));
         });
    });
-
 });
 
 function updateAuthStatus() {
@@ -60,6 +60,7 @@ function updateAuthStatus() {
       .done(function(response){
          showLoggedIn(response);
       }).fail(function(response){
+         // alert(errorMessage(response));
          showLoggedOut();
       });
 }
