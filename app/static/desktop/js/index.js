@@ -31,6 +31,7 @@ $(document).ready(function(){
          });
     });
 
+   // user home
    $("#user-home button").click(function(){
       logout()
       .done(function(response){
@@ -40,6 +41,7 @@ $(document).ready(function(){
       });
    });
 
+   // create event form
    $("#create-event-view #create-event-form").submit(function(e){
       e.preventDefault();
       var form = $(this);
@@ -47,7 +49,7 @@ $(document).ready(function(){
 
       createUserEvent(eventData)
         .done(function(response){
-            // create a new view for a created event
+            // TODO create a new view for a created event
             alert("Event created!");
         }).fail(function(response){
             alert(errorMessage(response));
@@ -60,7 +62,6 @@ function updateAuthStatus() {
       .done(function(response){
          showLoggedIn(response);
       }).fail(function(response){
-         // alert(errorMessage(response));
          showLoggedOut();
       });
 }
